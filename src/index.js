@@ -22,6 +22,19 @@ client.on('guildMemberAdd', async (member) => {
     channel.send({ embeds: [embed] });
 });
 
+client.on('guildMemberRemove', async (member) => {
+    if (member.guild.id !== '1058664724801257612') return;
+    const embed = new Discord.EmbedBuilder()
+        .setTitle('Goodbye!')
+        .setDescription(`さようなら, ${member.user}!\nまた来てね！\n\nGoodbye, ${member.user}!\nCome back soon!`)
+        .setColor('#FC2347')
+        .setThumbnail(member.user.displayAvatarURL())
+        .setTimestamp()
+        .setFooter({ text: 'CatHouse Products', iconURL: client.user.displayAvatarURL() });
+    const channel = await member.guild.channels.fetch('1160545808811315200');
+    channel.send({ embeds: [embed] });
+});
+
 client.on('messageCreate', async (message) => {
     if (message.author.bot || message.author.id !== '895050958441160734') return;
     if (message.content === 'chp!test') {
